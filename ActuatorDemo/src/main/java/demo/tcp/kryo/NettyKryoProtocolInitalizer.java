@@ -21,13 +21,15 @@ public class NettyKryoProtocolInitalizer extends ChannelInitializer<SocketChanne
 	@Autowired NettyKryoDecoder nettyKryoDecoder;
 	@Autowired NettyKryoEncoder nettyKryoEncoder;
 	@Autowired NettyKryoHandler nettyKryoHandler;
+	@Autowired DocumentNettyKryoHandler documentNettyKryoHandler;
 	
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline = ch.pipeline();
 		pipeline.addLast(new LoggingHandler(LogLevel.DEBUG));
 		pipeline.addLast("decoder", nettyKryoDecoder);
-		pipeline.addLast("handler", nettyKryoHandler);
+		pipeline.addLast("nettyKryoHandler", nettyKryoHandler);
+		pipeline.addLast("documentNettyKryoHandler", documentNettyKryoHandler);
 		pipeline.addLast("encoder", nettyKryoEncoder);
 	}
 

@@ -12,6 +12,9 @@ public class ObjectClientHandler extends SimpleChannelInboundHandler<User> {
 		User user = new User();
 		user.setId("fbwotjq");
 		user.setName("류재섭");
+		user.getHistorySet().add("베이시스트");
+		user.getHistorySet().add("프로그래머");
+		user.getHistorySet().add("장남");
         ctx.write/*AndFlush*/(user);
     }
 	

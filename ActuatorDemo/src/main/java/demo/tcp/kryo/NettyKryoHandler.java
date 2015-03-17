@@ -4,6 +4,9 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +25,11 @@ public class NettyKryoHandler extends SimpleChannelInboundHandler<User>{
 	protected void channelRead0(ChannelHandlerContext ctx, User msg) throws Exception {
 		logger.debug("##############################################################################");
 		logger.debug(String.format("SERVER::channelRead0 : %s, %s", msg.getId(), msg.getName()));
+		Set<String> set = msg.getHistorySet();
+		Iterator iterator = set.iterator();
+		while(iterator.hasNext()){
+			System.out.println("history:"+iterator.next());
+		}
 		logger.debug("##############################################################################");
 	}
 	
